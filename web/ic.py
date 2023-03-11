@@ -93,18 +93,18 @@ def on_calculate_button_clicked(b):
     )
 
 
-calculate_button.on_click(on_calculate_button_clicked)
+# calculate_button.on_click(on_calculate_button_clicked)
 
 # Display the widgets
-widgets.VBox([
-    rc_slider,
-    cc_slider,
-    l_slider,
-    g_slider,
-    b_slider,
-    y_slider,
-    calculate_button,
-    output
-])
+# widgets.VBox([
+#     rc_slider,
+#     cc_slider,
+#     l_slider,
+#     g_slider,
+#     b_slider,
+#     y_slider,
+#     calculate_button,
+#     output
+# ])
 
 # calculate_results(0.5, 10000, 10, 0.12, 5, 0.3)
