@@ -73,9 +73,9 @@ output = widgets.Output()
 # Define a function to create an instance of the Investment class and compute the results
 def calculate_results(rc, cc, l, g, b, y):
     investment = Investment(rc=rc, cc=cc, l=l, g=g, b=b, y=y)
-    output.clear_output(wait=True)
-    with output:
-        investment.compute()
+    # output.clear_output(wait=True)
+    # with output:
+    investment.compute()
 
 
 # Create a button widget and attach the calculate_results function to it
