@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <br>
+
+
+
+    <div style="width: 40%;margin: auto;">
+    <form class='form-login' action="/index/" method="get">
+        {% if message %}
+            <div class="alert alert-warning">{{ message }}</div>
+        {% endif %}
+          {% csrf_token %}
+
+
+    </form>
+</div>
+    <br>
+{#    <div style="text-align:center;"><a href="/register">没有账号？点击注册</a></div>#}
+
+
+
+
+{% endblock %}
