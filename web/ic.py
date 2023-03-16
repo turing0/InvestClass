@@ -2,8 +2,7 @@ import numpy as np
 import numpy_financial as npf
 import ipywidgets as widgets
 import matplotlib.pyplot as plt
-from IPython.display import display
-
+from pathlib import Path
 
 class Investment:
     def __init__(self, rc, cc, l, g, b, y):
@@ -43,7 +42,12 @@ class Investment:
         print(f"Distributions: {[round(d, 1) for d in self.distributions]}")
         print(f"NAV: {[round(n, 1) for n in self.navs]}")
         print(f"IRR: {round(irr, 2)}%")
-
+        res = {
+            'Contributions': [round(c, 1) for c in self.contributions],
+            'Distributions': [round(d, 1) for d in self.distributions],
+            'NAV': [round(n, 1) for n in self.navs],
+            'IRR': round(irr, 2),
+        }
         # Plot the results
         fig, axs = plt.subplots(1, 3, figsize=(20, 4), sharex=False)
         axs[0].bar(range(self.l + 1), self.contributions)
@@ -56,8 +60,12 @@ class Investment:
         axs[2].set_title('NAV')
         axs[2].set_xlabel('Year')
         plt.tight_layout()
-        plt.savefig('media/ic.jpg')
+
+        THIS_FOLDER = Path(__file__).parent.parent.resolve()
+        my_file = THIS_FOLDER / "media/ic.jpg"
+        plt.savefig(my_file)
         # plt.show()
+        return res
 
 
 # Create the widgets for the input parameters
@@ -75,7 +83,8 @@ def calculate_results(rc, cc, l, g, b, y):
     investment = Investment(rc=rc, cc=cc, l=l, g=g, b=b, y=y)
     # output.clear_output(wait=True)
     # with output:
-    investment.compute()
+    res = investment.compute()
+    return res
 
 
 # Create a button widget and attach the calculate_results function to it

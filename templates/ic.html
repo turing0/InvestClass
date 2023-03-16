@@ -8,47 +8,106 @@
     <div style="width: 50%;margin: 0 auto;">
 
         <form action="/ic" method="POST">
-          <div class="form-group">
-            <label for="rc">Contribution Rate</label>
-            <input type="text" class="form-control" name="rc" id="rc" value="0.25" placeholder="">
-          </div>
-          <div class="form-group">
-            <label for="cc">Total Investment</label>
-            <input type="text" class="form-control" name="cc" id="cc" value="10000" placeholder="">
-          </div>
+{#          <div class="form-group">#}
+{#            <label for="rc">Contribution Rate</label>#}
+{#            <input type="text" class="form-control" name="rc" id="rc" value="0.25" placeholder="">#}
+{#          </div>#}
+{#          <div class="form-group">#}
+{#            <label for="cc">Total Investment</label>#}
+{#            <input type="text" class="form-control" name="cc" id="cc" value="10000" placeholder="">#}
+{#          </div>#}
+{#            <div class="form-group">#}
+{#            <label for="l">Investment Horizon</label>#}
+{#            <input type="text" class="form-control" name="l" id="l" value="12" placeholder="">#}
+{#          </div>#}
+{#            <div class="form-group">#}
+{#            <label for="g">Annual Growth Rate</label>#}
+{#            <input type="text" class="form-control" name="g" id="g" value="0.1" placeholder="">#}
+{#          </div>#}
+{#            <div class="form-group">#}
+{#            <label for="b">Distribution Shape</label>#}
+{#            <input type="text" class="form-control" name="b" id="b" value="1" placeholder="">#}
+{#          </div>#}
+{#            <div class="form-group">#}
+{#            <label for="y">Distribution Rate</label>#}
+{#            <input type="text" class="form-control" name="y" id="y" value="0.05" placeholder="">#}
+{#          </div>#}
+
             <div class="form-group">
-            <label for="l">Investment Horizon</label>
-            <input type="text" class="form-control" name="l" id="l" value="12" placeholder="">
-          </div>
-            <div class="form-group">
-            <label for="g">Annual Growth Rate</label>
-            <input type="text" class="form-control" name="g" id="g" value="0.1" placeholder="">
-          </div>
-            <div class="form-group">
-            <label for="b">Distribution Shape</label>
-            <input type="text" class="form-control" name="b" id="b" value="1" placeholder="">
-          </div>
-            <div class="form-group">
-            <label for="y">Distribution Rate</label>
-            <input type="text" class="form-control" name="y" id="y" value="0.05" placeholder="">
-          </div>
+             <label for="range1">Contribution Rate : </label> <span id="range1-value">{{ rc }}</span>
+             <input type="range" class="form-control-range" name="rc" id="range1" value="{{ rc }}" min="0" max="1" step="0.01">
+         </div>
+        <div class="form-group">
+            <label for="range2"> Total Investment : </label> <span id="range2-value">{{ cc }}</span>
+            <input type="range" class="form-control-range" name="cc" id="range2" value="{{ cc }}" min="1000" max="50000" step="1000">
+        </div>
+        <div class="form-group">
+            <label for="range3"> Investment Horizon : </label> <span id="range3-value">{{ l }}</span>
+            <input type="range" class="form-control-range" name="l" id="range3" value="{{ l }}" min="1" max="20" step="1">
+        </div>
+        <div class="form-group">
+            <label for="range4"> Annual Growth Rate : </label> <span id="range4-value">{{ g }}</span>
+            <input type="range" class="form-control-range" name="g" id="range4" value="{{ g }}" min="-0.50" max="0.50" step="0.01">
+        </div>
+        <div class="form-group">
+            <label for="range5"> Distribution Shape : </label> <span id="range5-value">{{ b }}</span>
+            <input type="range" class="form-control-range" name="b" id="range5" value="{{ b }}" min="0" max="10" step="1">
+        </div>
+        <div class="form-group">
+            <label for="range6"> Distribution Rate : </label> <span id="range6-value">{{ y }}</span>
+            <input type="range" class="form-control-range" name="y" id="range6" value="{{ y }}" min="0" max="1" step="0.01">
+        </div>
+
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 
-</div>
+    <form>
+
+
+
+
+    </form>
+    </div>
     <br>
 
 {#    <img src="/media/ic.jpg" alt="">#}
 
-    <img src="data:image/jpg;base64,{{ image_base64 }}" alt="" style="width: 100%;>
+    <img src="data:image/jpg;base64,{{ image_base64 }}" alt="" style="width: 100%;">
     <br>
-    {{ rc }}
-    {{ cc }}
-    {{ l }}
-    {{ g }}
-    {{ b }}
-    {{ y }}
+
+    <table class="table">
+
+      <tbody>
+        <tr>
+          <th scope="row">Contributions</th>
+          <td>{{ Contributions }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Distributions</th>
+          <td>{{ Distributions }}</td>
+        </tr>
+        <tr>
+          <th scope="row">NAV</th>
+          <td>{{ NAV }}</td>
+        </tr>
+      <tr>
+          <th scope="row">IRR</th>
+          <td>{{ IRR }}</td>
+        </tr>
+      </tbody>
+    </table>
 
 
+    <br>
+
+    <script>
+        var ranges = [1, 2, 3, 4, 5, 6];
+        ranges.forEach(function(i) {
+            var range = document.getElementById('range' + i);
+            var value = document.getElementById('range' + i + '-value');
+            range.oninput = function() { value.textContent = this.value;
+            }
+        });
+    </script>
 
 {% endblock %}
